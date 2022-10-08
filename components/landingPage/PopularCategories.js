@@ -11,7 +11,7 @@ export default function PopularCategories() {
                     <p className='text-gray-500 w-6/12'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
             </section>
-            <section className='grid grid-cols-2 md:grid-cols-4 gap-2 px-5'>
+            <section className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-2 px-5'>
         <CategoryCard icon={`graphicDesign.svg`} title={`Graphic Design`} totalAvailable={`3215`}/>
         <CategoryCard icon={`webDesign.svg`} title={`Web Design`} totalAvailable={`3215`}/>
         <CategoryCard icon={`webDevelopment.svg`} title={`Web Development`} totalAvailable={`3215`}/>

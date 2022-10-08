@@ -1,7 +1,7 @@
 import WorkStep from './WorkStep'
 export default function HowItWorks() {
     return (
-        <div className='h-screen grid grid-rows-2 items-center justify-around'>
+        <div className='h-screen grid grid-rows-2 items-center justify-around my-40 sm:yb-0'>
             <section className='w-full  text-center'>
                 <h1 className='text-lg text-gray-500'>Working Process</h1>
                 <h1 className='text-3xl font-bold'>How It Works</h1>

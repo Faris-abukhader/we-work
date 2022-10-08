@@ -14,7 +14,7 @@ export default function ReviewCard({image,username,comment}) {
 
   return (
     <div ref={sectionRef} className='w-full'>
-            <div className={`relative w-full  py-5 bg-gray-200 rounded-md animate__animated ${isVisiable&&`animate__fadeIn animate__slower`}`}>
+            <div style={{background:'#F8FAFF'}} className={`relative w-full py-5 border rounded-md animate__animated ${isVisiable&&`animate__fadeIn animate__slower`}`}>
             <div className='absolute -top-10 left-1/2 transform -translate-x-1/2'>
                 <Image src={`/images/${image}`} className='rounded-full' width={100} height={100} alt='profile'/>
             </div>
