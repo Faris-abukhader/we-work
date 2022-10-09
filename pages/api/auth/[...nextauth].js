@@ -30,7 +30,7 @@ export default NextAuth({
       },
       async authorize(credentials) {
       
-        const res = await fetch(`${process.env.API_URL}/user/auth`, {
+        const res = await fetch(`${process.env.API_URL}/auth/signIn`, {
           method: 'POST',
           body: JSON.stringify({email:credentials.email,password:credentials.password}),
           headers: {
@@ -39,16 +39,20 @@ export default NextAuth({
         });
 
         const user = await res.json();
-        if (!user.state) {
+
+        console.log(user)
+        if (!user.id) {
           throw new Error('something wrong');
         }
         // If no error and we have user data, return it
-        if (user.user) {
+        if (user) {
           // return user.user
           return{
-            email:user.user.email +','+user.user.id,
-            name:user.user.firstName+' '+user.user.secondName,
-            image:user.user.image
+            id:user.id,
+            email:user.email,
+            name:user.firstName+' '+user.secondName,
+            avatar:user.avatar,
+            token:user.token
           }
         }
         // Return null if user data could not be retrieved

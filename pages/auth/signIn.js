@@ -3,6 +3,8 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { isValid } from '../../utils/emailValidation'
 import Link from "next/link"
+import { signIn } from "next-auth/react"
+import { fireNotification } from '../../utils/notification'
 export default function SignIn() {
     const [credentials, setCredentials] = useState({ email: '', password: '' })
     const [disabled, setDisabled] = useState(true)
@@ -11,15 +13,26 @@ export default function SignIn() {
     const inputHanler = (e) => {
         setCredentials((prevs) => ({
             ...prevs,
-            [e.target.name]: e.target.name == 'rememberMe' ? (e.target.checked) : e.target.value
+            [e.target.name]: e.target.value
         }))
     }
 
-    const signInFunc = () => {
-        console.log(credentials)
+    const signInFunc = async () => {
+        const request = await signIn('credentials', {
+            redirect: false,
+            callbackUrl: process.env.BASE_URL,
+            email: credentials.email,
+            password: credentials.password
+        });
+
+        if (request.status == 200) {
+            router.push('/dashboard')
+        } else {
+            fireNotification('your password or emial is not correct', 'error')
+        }
     }
 
-    const reset = ()=>{
+    const reset = () => {
         setCredentials({ email: '', password: '' })
     }
 
