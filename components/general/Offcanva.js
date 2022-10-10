@@ -1,6 +1,10 @@
 import { useEffect, useState,useRef } from 'react';
 import Image from 'next/image';
+import {  useSession,signOut } from 'next-auth/react';
+import Link from 'next/link';
 export default function Offcanvas({show}) {
+  const session = useSession()
+  console.log(session)
   const offcanvasRef = useRef(null)
 
     return (
@@ -17,8 +21,12 @@ export default function Offcanvas({show}) {
                 <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Home</a> 
                 <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Job List</a>
                 <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Dashboard</a>
-                <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Sign in</a>
-                <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Register</a>
+                {session.data?.user?.email ?
+                  <a onClick={signOut} className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Sign out</a>
+                   :
+                   <Link href={`/auth/signIn`}><a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Sign in</a></Link>
+                }
+                {!session.data && <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Register</a>}
             </div>
       </div>
     </div>

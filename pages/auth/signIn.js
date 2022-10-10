@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { isValid } from '../../utils/emailValidation'
+import { isValid as emailValidation } from '../../utils/emailValidation'
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { fireNotification } from '../../utils/notification'
+import InputWithLabel from "../../components/general/InputWithLabel"
 export default function SignIn() {
     const [credentials, setCredentials] = useState({ email: '', password: '' })
+    const [isValid, setIsValid] = useState({ email: false, password: false })
     const [disabled, setDisabled] = useState(true)
     const router = useRouter()
 
-    const inputHanler = (e) => {
+    const inputHandler = (e) => {
         setCredentials((prevs) => ({
             ...prevs,
             [e.target.name]: e.target.value
         }))
     }
+
+    useEffect(() => {
+        setIsValid(() => ({
+            ['email']: emailValidation(credentials.email),
+            ['password']: credentials.password.length > 5 ? true : false,
+        }))
+    }, [credentials])
+
 
     const signInFunc = async () => {
         const request = await signIn('credentials', {
@@ -28,7 +38,7 @@ export default function SignIn() {
         if (request.status == 200) {
             router.push('/dashboard')
         } else {
-            fireNotification('your password or emial is not correct', 'error')
+            fireNotification('your password or email is not correct', 'error')
         }
     }
 
@@ -37,7 +47,7 @@ export default function SignIn() {
     }
 
     useEffect(() => {
-        if (isValid(credentials.email) && credentials.password.length >= 5) {
+        if (emailValidation(credentials.email) && credentials.password.length >= 5) {
             setDisabled(false)
         } else {
             setDisabled(true)
@@ -53,10 +63,12 @@ export default function SignIn() {
                 <h3 className="font-bold text-gray-50 text-xl md:text-3xl py-6">Start for free Today</h3>
                 <h4 className="font-bold text-blue-200 text-lg md:text-xl py-6">Access to all features. No credit card required.</h4>
                 <div className="px-2 sm:px-5 text-start pt-8">
-                    <label className='text-sm text-gray-200 pl-2'>Email :</label>
+                <InputWithLabel value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
+                <InputWithLabel value={credentials.password} name='password' type="password" isValid={isValid.email} label='Email' inputHandler={inputHandler} />
+                    {/* <label className='text-sm text-gray-200 pl-2'>Email :</label>
                     <input style={{ background: 'transparent' }} type="email" name="email" onChange={inputHanler} value={credentials.email} placeholder='something@yahoo.com' className='w-full px-3 py-2 m-0 text-gray-200 mb-3 ring-0.5 appearance-none focus:outline-none hover:border-none focus:ring-blue-300 bg-transparent focus:bg-transparent hover:bg-transparent rounded-md' />
                     <label className='text-sm text-gray-200 pl-2'>Password :</label>
-                    <input style={{ background: 'transparent' }} type="password" name="password" onChange={inputHanler} value={credentials.password} placeholder='*********' className='w-full px-3 py-2 m-0 text-gray-200 mb-3 ring-0.5 appearance-none focus:outline-none hover:border-none focus:ring-blue-300 bg-transparent focus:bg-transparent hover:bg-transparent  rounded-md' />
+                    <input style={{ background: 'transparent' }} type="password" name="password" onChange={inputHanler} value={credentials.password} placeholder='*********' className='w-full px-3 py-2 m-0 text-gray-200 mb-3 ring-0.5 appearance-none focus:outline-none hover:border-none focus:ring-blue-300 bg-transparent focus:bg-transparent hover:bg-transparent  rounded-md' /> */}
                     <button disabled={disabled} onClick={signInFunc} className='w-full h-[40px] mt-6 text-gray-50 flex justify-center items-center bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Sign In</button>
                     <button onClick={reset} className='w-full h-[40px] mt-4 flex justify-center items-center text-gray-50  bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Reset</button>
                 </div>

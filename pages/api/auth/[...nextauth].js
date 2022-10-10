@@ -1,12 +1,10 @@
+import axios from "axios";
 import NextAuth from "next-auth"
 import CredentialsProvider  from "next-auth/providers/credentials";
 import('next').NextConfig
-
 export default NextAuth({
   secret: process.env.JWT_SECRET,
-  session: {
-    strategy: 'jwt',
-  },
+  
   pages: {
     signIn: "/auth/signIn",
     // signOut: "/auth/logout",
@@ -27,65 +25,77 @@ export default NextAuth({
           type: "password",
           placeholder: "Your super secure password",
         },
+        rememberMe:{
+          type:'text'
+        }
       },
       async authorize(credentials) {
-      
-        const res = await fetch(`${process.env.API_URL}/auth/signIn`, {
-          method: 'POST',
-          body: JSON.stringify({email:credentials.email,password:credentials.password}),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
 
-        const user = await res.json();
+        try{
+          const res = await axios.post(`${process.env.API_URL}/auth/signIn`,{email:credentials.email,password:credentials.password},{
+            headers: {
+              'Content-Type': 'application/json',
+              // 'token': process.env.WEBSITE_TOKEN
+           }
+          })
+  
 
-        console.log(user)
-        if (!user.id) {
-          throw new Error('something wrong');
-        }
-        // If no error and we have user data, return it
-        if (user) {
-          // return user.user
-          return{
-            id:user.id,
-            email:user.email,
-            name:user.firstName+' '+user.secondName,
-            avatar:user.avatar,
-            token:user.token
+          const user = res.data
+
+          console.log("***********************")
+          console.log(res)
+          console.log("***********************")
+
+
+          if (!user.id) {
+            throw new Error('something wrong');
           }
+
+          // If no error and we have user data, return it
+          if (user.id) {
+            
+            // return user.user
+            return{
+              id:user.id,
+              email:user.email,
+              name:user.firstName+' '+user.lastName,
+              image:user.avatar,
+              token:user.token,
+              accountType:user.accountType,
+            }
+          }
+
+          // thorw err if user data could not be retrieved
+          throw new Error('something went wrong');
+  
+
+          
+        }catch(err){
+          console.log('here is the error')
+          console.log(err.message)
         }
-        // Return null if user data could not be retrieved
-        return null;
+
       },
     }),
   ],
+  session: {
+    strategy: 'jwt',
+  },
   callbacks:{
-        redirect:async({baseUrl})=>{
-          return baseUrl+'/'
-        },
-        jwt:async({token,user})=>{
-          if(user){
-            token.id = user.id
-          }
-          return token
-        },
-        session:async({session,token,user})=>{
-          if(user){
-            session.user = user
-          }
-          if (token){
-            session.token = token
-          }
+       
+    redirect:async({baseUrl})=>{
+      return baseUrl
+    },
+    jwt:async({token,user})=>{
+      user && (token.user = user)
+      return token
+    },
+    session:async({session,token,user})=>{
 
-          return session
-        },
-        jwt:async({token,user,account,profile})=>{
-          if(account){
-            token.accessToken = account.access_token
-          }
-          return token
-        }
+      session.user = token.user
+      return session
+
+    },
       },
       secret:process.env.JWT_SECRET,
       jwt:{
