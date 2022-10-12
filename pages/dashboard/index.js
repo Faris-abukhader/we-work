@@ -1,21 +1,11 @@
-import {useState} from 'react'
 import { getSession } from "next-auth/react"
-import Navbar from '../../components/general/Navbar'
-import Offcanvas from '../../components/general/Offcanva'
-import { signOut } from 'next-auth/react'
-export default function Index() {
-    const [showOffcanvas,setShowOffcanvas] = useState(false)
-
-    const toggleOffcanvas = ()=>{
-      setShowOffcanvas(!showOffcanvas)
-    }
-  
+import Layout from '../../components/layout/Layout'
+export default function Index() {  
     return (
-        <div className='w-full bg-transparent'>
-      <Navbar burgerHandler={toggleOffcanvas}  />
-      <Offcanvas show={showOffcanvas}/>
-      <button className='m-20' onClick={signOut}>sign out</button>
-        </div>
+    <Layout navBackgroundColor='#000' navHasAnimation={false}>
+    <h1>dashbordd</h1>
+   </Layout>
+
     )
 }
 
@@ -23,7 +13,6 @@ export const getServerSideProps = async (ctx) => {
     const session = await getSession(ctx)
 
     if (session) {
-        console.log('session is here')
         console.log(session)
         return {
             props: {}

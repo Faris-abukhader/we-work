@@ -20,9 +20,11 @@ export default function Offcanvas({show}) {
             <div className='flex flex-col pt-3 cursor-pointer text-center space-y-6 text-gray-100'>
                 <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Home</a> 
                 <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Job List</a>
-                <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Dashboard</a>
                 {session.data?.user?.email ?
+                <>
+                  <a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Dashboard</a>
                   <a onClick={signOut} className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Sign out</a>
+                </>
                    :
                    <Link href={`/auth/signIn`}><a className={`hover:text-gray-400 hover:font-bold border-b pb-3 border-gray-500`}>Sign in</a></Link>
                 }
