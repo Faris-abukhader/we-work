@@ -21,7 +21,7 @@ export default function Navbar({ burgerHandler,customColor='',hasAnimation=true 
   }, [])
 
   return (
-    <div style={{backdropFilter: 'blur(10px)',backgroundColor:customColor.length>0 && customColor}} className={`w-full fixed top-0 p-3 py-5 ${backgroundColor} z-20`}>
+    <div style={{backdropFilter: 'blur(10px)',backgroundColor:customColor.length>0 && customColor}} className={`w-full fixed top-0 p-3 py-5 ${backgroundColor} z-30`}>
         <div className='blur-0 flex justify-between items-center text-gray-100'>
         <div name='pageName' className={`flex items-center text-3xl font-bold ${hasAnimation && 'animate__animated'} animate__fadeInLeft animate__slow`}>
           <Image src={`/icons/logo.svg`} width={30} height={30} alt='logo'/>

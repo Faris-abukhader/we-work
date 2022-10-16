@@ -1,39 +1,33 @@
-import {useState} from 'react'
-import CustomDropDown from '../general/CustomDropdown'
-import citiesList from '../../utils/citiesList'
+import { useState } from 'react'
 import industryList from '../../utils/industries'
+import salaryRange from '../../utils/salaryRange'
+import Checkbox from '../general/Checkbox'
+import popularKey from '../../utils/popularKey'
+import CountriesDropdown from './CountriesDropdown'
 export default function SearchFilter() {
-    console.log(industryList)
-    const [showCityList,setShowCityList] = useState(false)
-    const [searchCity,setSearchCity] = useState('')
-    const [city,setCity] = useState('')
+  console.log(industryList)
+  const [city, setCity] = useState('')
   return (
-    <div className='w-full'>
-        <div className='flex justify-between items-end border-b pb-2'>
-            <h1 className='text-xl font-bold'>Advance Filter</h1>
-            <h1 className='text-sm text-gray-400'>Reset</h1>
-        </div>
-
-<div className='py-4'>
-<CustomDropDown hasLabel={true} label={'hi'} showList={showCityList} setShowList={setShowCityList} isValid={true} hasData={true}>
-            <input className={`ring-0.5  ring-gray-200 hover:border-none hover:outline-none focus:border-none focus:outline-none  rounded-md w-full p-2`} value={searchCity} onChange={(e)=>setSearchItemGroup(e.target.value)}/>
-              {
-                citiesList && 
-                citiesList.filter((item,index)=>item.name.toLowerCase().includes(searchCity)).map((item,index)=>{
-                  return (
-                    <CustomDropDown.ListItem key={index} setShowList={setShowCityList}>
-                    <h1 onClick={()=>setCity(item.name)}>{item.name}</h1>
-                    </CustomDropDown.ListItem>
-                    )
-                })
-              }
-            </CustomDropDown>
-
-</div>
-
-            <label className='pt-4 text-xl font-bold'>Industry</label>
-            
-
+    <div className='w-full space-y-2'>
+      <div className='flex justify-between items-end border-b pb-2'>
+        <h1 className='text-xl font-bold'>Advance Filter</h1>
+        <h1 className='text-sm text-gray-400'>Reset</h1>
+      </div>
+      <div className='py-4'>
+        <CountriesDropdown label={'Amman, Jordan'} setCity={setCity}/>
+      </div>
+      <section className='space-y-2 pb-3 border-b'>
+      <label className='pt-4 text-xl font-bold'>Industry</label>
+      {industryList && industryList.map((item)=>{return<Checkbox key={item} isChecked={true} label={item}  num={Math.floor(Math.random()*100+1)}/>})}
+      </section>
+      <section className='space-y-2 py-3 border-b'>
+      <label className='pt-4 text-xl font-bold'>Salary Range</label>
+      {salaryRange && salaryRange.map((item)=>{return<Checkbox key={item.label} isChecked={true} label={item.label} num={Math.floor(Math.random()*100+1)}/>})}
+      </section>
+      <section className='space-y-2 py-3 border-b'>
+      <label className='pt-4 text-xl font-bold'>Popular Keyword</label>
+      {popularKey && popularKey.map((item)=>{return<Checkbox key={item} isChecked={true} label={item} num={Math.floor(Math.random()*100+1)}/>})}
+      </section>
     </div>
   )
 }
