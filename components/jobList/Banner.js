@@ -11,7 +11,7 @@ export default function Banner() {
             <SearchBar hasBorder={false}/>
             </div>
             <div className='absolute bottom-1 left-1  w-1/3 sm:w-1/6 z-10'>
-            <Image src='/illustrations/jobList1.svg' width={90} height={90}  layout='responsive'  alt='avatar_1' />
+            <Image src='/illustrations/jobList1.svg' width={90} height={90} layout='responsive'  alt='avatar_1' />
             </div>
             <div className='absolute bottom-1 right-1  w-1/3 sm:w-1/6 z-10'>
             <Image src='/illustrations/jobList2.svg' width={90} height={90} layout='responsive' alt='avatar_2'/>

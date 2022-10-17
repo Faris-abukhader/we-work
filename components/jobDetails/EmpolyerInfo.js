@@ -12,7 +12,7 @@ export default function EmpolyerInfo({ownerName='AliThemes',location='Amman,Jord
       };
     
   return (
-    <div className='w-1/4  border-2 border-gray-100 rounded-md p-3'>
+    <div className='w-full  border-2 border-gray-100 rounded-md p-3'>
         <div className='flex justify-start space-x-3 py-8 border-b'>
             <Image className='rounded-md' src={`/images/gates.webp`} width={60} height={60} alt='owner_image'/>
           <div className=' grid grid-row-3 items-center'>
