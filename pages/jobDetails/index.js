@@ -13,7 +13,6 @@ export default function index() {
         <div className='w-full space-y-3'>
         <EmploymentInfo/>
         <JobContent jobDescription='flkhaer fkhae rkjgae rgjkaerghkjae gjkae hajekrhajg kaehrg akje ghaejk ghaekjg heaj gjkea gkjea gajkeg ejkrg aehkjg ha gahekj gaehgj khaek gjahe gkhaerj gaek hriu gajkrgeurigegiueh gaeu geua igh aegaerugkfdgiaoeguaotevioaeg ;er iogaeiarje eirhuga vjberiu'/>
-
         </div>
         <div className='w-full md:w-1/3 space-y-3'>
         <EmpolyerInfo/>

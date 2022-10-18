@@ -12,7 +12,7 @@ const toggleOffcanvas = ()=>{
     <div className='w-full bg-transparent'>
       <Navbar customColor={navBackgroundColor} burgerHandler={toggleOffcanvas} hasAnimation={navHasAnimation} />
       <Offcanvas show={showOffcanvas}/>
-      <div  className={`w-full min-h-screen py-28 px-2 md:px-20`}>
+      <div  className={`w-full min-h-screen py-10 px-2 md:px-20`}>
       {children}
       </div>
       <Footer/>

@@ -6,13 +6,16 @@ import { signOut } from 'next-auth/react'
 export default function Navbar({ burgerHandler,customColor='',hasAnimation=true }) {
 
   const [backgroundColor, setBackgroundColor] = useState('')
+  const [position,setPosition] = useState(1)
   const session = useSession()
 
   const changeBackground = () => {
     if (window.pageYOffset >= 120) {
-      setBackgroundColor('bg-gray-800')
+      setBackgroundColor('shadow-xl')
+      setPosition(2)
     } else {
-      setBackgroundColor('bg-gray-600 bg-opacity-20')
+      setBackgroundColor('')
+      setPosition(1)
     }
   }
 
@@ -21,8 +24,8 @@ export default function Navbar({ burgerHandler,customColor='',hasAnimation=true 
   }, [])
 
   return (
-    <div style={{backdropFilter: 'blur(10px)',backgroundColor:customColor.length>0 && customColor}} className={`w-full fixed top-0 p-3 py-5 ${backgroundColor} z-30`}>
-        <div className='blur-0 flex justify-between items-center text-gray-100'>
+    <div style={{backdropFilter: 'blur(10px)',/*backgroundColor:customColor.length>0 && customColor*/}} className={`w-full bg-white top-0 ${position==1 ? 'static':'fixed animate__animated'} animate__fadeInDown animate__slower p-3 py-5 ${backgroundColor} z-30`}>
+        <div className='blur-0 flex justify-between items-center text-gray-800'>
         <div name='pageName' className={`flex items-center text-3xl font-bold ${hasAnimation && 'animate__animated'} animate__fadeInLeft animate__slow`}>
           <Image src={`/icons/logo.svg`} width={30} height={30} alt='logo'/>
           <div>e work</div>
@@ -35,11 +38,11 @@ export default function Navbar({ burgerHandler,customColor='',hasAnimation=true 
         </div>
         {
           session ? 
-          <a onClick={signOut} style={{backdropFilter: 'blur(10px)'}} className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block bg-opacity-40 p-1 px-4 rounded-md outline outline-offset-1 outline-gray-500 bg-blue-800 text-xs text-white hover:cursor-pointer  hover:outline-gray-600`}>Sign out</a>
+          <a onClick={signOut} className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block py-3 px-4 rounded-md outline  bg-blue-800 text-xs text-white hover:cursor-pointer hover:bg-blue-900`}>Sign out</a>
             :
-          <Link href={`/auth/signIn`}><a style={{backdropFilter: 'blur(10px)'}} className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block bg-opacity-40 p-1 px-4 rounded-md outline outline-offset-1 outline-gray-500 bg-blue-800 text-xs text-white hover:cursor-pointer  hover:outline-gray-600`}>Sign in</a></Link>
+          <Link href={`/auth/signIn`}><a className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block py-3 px-4 rounded-md  bg-blue-800 text-xs text-white hover:cursor-pointer hover:bg-blue-900`}>Sign in</a></Link>
         }
-        <button  onClick={()=>burgerHandler()} className=' md:hidden appearance-none ring-0.7 ring-blue-400 rounded-md w-[25px] h-[25px] flex justify-center items-center'>
+        <button  onClick={()=>burgerHandler()} className=' md:hidden appearance-none ring-0.7 ring-blue-600 rounded-md w-[25px] h-[25px] flex justify-center items-center'>
             <Image id='burger_button' src={`/icons/list.svg`} width={20} height={20} alt='burger'/>
         </button>
         </div>
