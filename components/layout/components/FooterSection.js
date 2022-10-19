@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 export default function FooterSection({title,items=[]}) {
-    console.log(title,items)
   return (
     <section className='w-full'>
         <h1 className='text-xl text-gray-700 pb-4'><b>{title}</b></h1>
