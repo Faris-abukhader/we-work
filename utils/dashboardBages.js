@@ -1,26 +1,34 @@
 const freelancer = [
     {
-        title:'Job List',
-        url:'jobList'
+        title:'All works',
+        url:'allWorks'
     },
     {
-        title:'Product list',
-        url:'productList'
+        title:'Transaction history',
+        url:'transactionHistory'
     },
+    {
+        title:'Message',
+        url:'message'
+    }
 ]
 const employer = [
     {
-        title:'Published jobs',
-        url:'publishedJobs'
+        title:'All works',
+        url:'allWorks'
     },
     {
-        title:'Product list',
-        url:'productList'
+        title:'Transaction history',
+        url:'transactionHistory'
     },
     {
-        title:'Hiring request list',
-        url:'hiringRequestList'
+        title:'Hired history',
+        url:'hiredHistory'
     },
+    {
+        title:'Message',
+        url:'message'
+    }
 ]
 
 const getUserList = (user)=>{
