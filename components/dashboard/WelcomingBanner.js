@@ -2,7 +2,7 @@ import Image from "next/image"
 export default function WelcomingBanner({username='',worksNum=0}) {
   return (
     <div className='w-full p-5'>
-        <div style={{backgroundColor:'#7367f0'}} className='relative flex justify-center items-center rounded-lg w-full h-[350px] shadow-md'>
+        <div className='relative bg-customDarkPurple flex justify-center items-center rounded-lg w-full h-[350px] shadow-md'>
             <div className="absolute top-0 left-0 w-full flex items-start justify-between">
             <Image src={'/images/bannerLeft.png'}  width={225} height={116} alt='line' />
             <Image src={'/images/bannerRight.png'} width={197} height={83} alt='line' />

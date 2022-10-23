@@ -11,7 +11,8 @@ module.exports = {
         customGreen:'#55bca7',
         customDarkBlue:'#0d1442',
         customLightBlue:'#4aa5c3',
-        customLightPink:'#FEF8FF'
+        customLightPink:'#FEF8FF',
+        customDarkPurple:'#7367f0',
       },
       fontFamily:{
         almarai:'Almarai',

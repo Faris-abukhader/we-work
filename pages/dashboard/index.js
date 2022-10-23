@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import WelcomingBanner from "../../components/dashboard/WelcomingBanner"
 export default function Index() {  
     const session = useSession()
-    const username = session.data.user?.name
+    const username = session.data?.user?.name
     const [userAccountType,setUserAccountType] = useState('')
 
     useEffect(()=>{
