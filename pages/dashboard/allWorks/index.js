@@ -3,7 +3,10 @@ import AddNewJobModel from '../../../components/dashboard/allWorks/AddNewJobMode
 import WorkCard from '../../../components/dashboard/allWorks/WorkCard'
 import AddNewButton from '../../../components/general/AddNewButton'
 import Layout from '../../../components/layout/UserLayout'
-export default function Index() {
+import { getSession } from 'next-auth/react'
+import axios from 'axios'
+import SegimentPicker from '../../../components/general/SegmentsPicker'
+export default function Index({jobList}) {
   const [showAddModal,setShowAddModal] = useState(false)
   const [showEditModal,setShowEditModal] = useState(false)
   const [showReviewModal,setShowReviewModal] = useState(false)
@@ -53,3 +56,28 @@ export default function Index() {
     </Layout>
   )
 }
+
+
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx)
+
+  if (session) {
+      console.log('*************')
+      console.log(session.user)
+      const jobRequest = await axios.get(`${process.env.API_URL}/job/all`)
+      const jobList = jobRequest.data.data
+      return {
+          props: {
+            jobList
+          }
+      }
+  } else {
+      return {
+          redirect: {
+              destination: '/api/auth/signin'
+          },
+          props: {}
+      }
+  }
+}
+
