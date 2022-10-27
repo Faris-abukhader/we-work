@@ -4,6 +4,10 @@ const freelancer = [
         url:'allWorks'
     },
     {
+        title:'Proposals',
+        url:'freelancerProposals'
+    },
+    {
         title:'Transaction history',
         url:'transactionHistory'
     },
@@ -32,7 +36,7 @@ const employer = [
 ]
 
 const getUserList = (user)=>{
-    if(user=='freelancer'){
+    if(user=='f'){
         return freelancer
     }else{
         return employer

@@ -65,10 +65,6 @@ export default function SignIn() {
                 <div className="px-2 sm:px-5 text-start pt-8">
                 <InputWithLabel value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
                 <InputWithLabel value={credentials.password} name='password' type="password" isValid={isValid.email} label='Email' inputHandler={inputHandler} />
-                    {/* <label className='text-sm text-gray-200 pl-2'>Email :</label>
-                    <input style={{ background: 'transparent' }} type="email" name="email" onChange={inputHanler} value={credentials.email} placeholder='something@yahoo.com' className='w-full px-3 py-2 m-0 text-gray-200 mb-3 ring-0.5 appearance-none focus:outline-none hover:border-none focus:ring-blue-300 bg-transparent focus:bg-transparent hover:bg-transparent rounded-md' />
-                    <label className='text-sm text-gray-200 pl-2'>Password :</label>
-                    <input style={{ background: 'transparent' }} type="password" name="password" onChange={inputHanler} value={credentials.password} placeholder='*********' className='w-full px-3 py-2 m-0 text-gray-200 mb-3 ring-0.5 appearance-none focus:outline-none hover:border-none focus:ring-blue-300 bg-transparent focus:bg-transparent hover:bg-transparent  rounded-md' /> */}
                     <button disabled={disabled} onClick={signInFunc} className='w-full h-[40px] mt-6 text-gray-50 flex justify-center items-center bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Sign In</button>
                     <button onClick={reset} className='w-full h-[40px] mt-4 flex justify-center items-center text-gray-50  bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Reset</button>
                 </div>

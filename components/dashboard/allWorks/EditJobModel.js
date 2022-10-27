@@ -11,15 +11,22 @@ import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import {fireNotification} from '../../../utils/fireNotification'
 import { useDispatch } from 'react-redux'
-import { addNewJob } from '../../../store/slices/job'
-export default function AddNewJobModel( {show, toggle}) {
+import { addNewJob, modifyOneJob } from '../../../store/slices/job'
+export default function EditJobModel({show,toggle,data}) {
+    console.log(data)
     const session = useSession()
     const dispatch = useDispatch()
     const userId = session.data?.user?.id
     const token = session.data?.user?.token
     const [disable,setDisable] = useState(true)
     const [isValid, setValid] = useState({ title:false,location:false,description:false,salary:false,skillRequired:false,jobCategory:false })
-    const [job,setJob] = useState({title:'',location:'',description:'',salary:'',skillRequired:'',jobCategory:''})
+    const [job,setJob] = useState({di:'',title:'',location:'',description:'',salary:'',skillRequired:[],jobCategory:''})
+
+    useEffect(()=>{
+       if(show){
+        setJob({id:data?.id,title:data?.title,location:data?.location,description:data?.description,salary:data?.salary,skillRequired:data?.skillRequired,jobCategory:data?.jobCategory})
+       }
+    },[show])
 
     const inputHandler = (e) => {
       setJob((prevs) => ({
@@ -73,16 +80,11 @@ export default function AddNewJobModel( {show, toggle}) {
       validation()
     }, [job])
   
-
-    useEffect(()=>{
-      console.log(job)
-    },[job])
-
-    const postOneJob = ()=>{
-      axios.post(`${process.env.API_URL}/job/${userId}`,{...job},{ headers: { token } })
+    const upodateOneJob = ()=>{
+      axios.put(`${process.env.API_URL}/job`,{...job},{ headers: { token } })
       .then((res) => {
-        fireNotification({label:'New job post successfully.',icon:'success'})
-        dispatch(addNewJob(res.data))
+        fireNotification({label:'Target job updated successfully.',icon:'success'})
+        dispatch(modifyOneJob(res.data))
         toggle()
         reset()
         console.log(res)
@@ -97,7 +99,7 @@ export default function AddNewJobModel( {show, toggle}) {
       toggle()
     }
   return (
-    <CustomModal show={show} toggle={toggle} title={`Post new Job`} >
+    <CustomModal show={show} toggle={toggle} title={`Update a Job`} >
       <CustomModal.Body>
         <section className="py-1">
           <div className='grid grid-cols-1 w-full space-y-3'>
@@ -116,7 +118,7 @@ export default function AddNewJobModel( {show, toggle}) {
       </CustomModal.Body>
       <CustomModal.Footer>
         <CloseButton onClickHandler={close}>{`Close`}</CloseButton>
-        <ConfirmButton onClickHandler={postOneJob} disable={disable}>{`Confirm`}</ConfirmButton>
+        <ConfirmButton onClickHandler={upodateOneJob} disable={disable}>{`Confirm`}</ConfirmButton>
       </CustomModal.Footer>
     </CustomModal>
   )

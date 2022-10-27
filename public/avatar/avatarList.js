@@ -1,0 +1,15 @@
+export const avatarList = [
+    "avatar-1.svg",
+    "avatar-2.svg",
+    "avatar-3.svg",
+    "avatar-4.svg",
+    "avatar-5.svg",
+    "avatar-6.svg",
+    "avatar-7.svg",
+    "avatar-8.svg",
+    "avatar-9.svg",
+    "avatar-10.svg",
+    "avatar-11.svg",
+    "avatar-12.svg",
+    "avatar-13.svg",
+]

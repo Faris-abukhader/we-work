@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import industryList from '../../utils/industries'
 import salaryRange from '../../utils/salaryRange'
 import Checkbox from '../general/Checkbox'
 import popularKey from '../../utils/popularKey'
-import CountriesDropdown from './CountriesDropdown'
+import CustomDropDown from '../general/CustomDropdown'
+import citiesList from '../../utils/citiesList'
 export default function SearchFilter() {
-  console.log(industryList)
   const [city, setCity] = useState('')
+  const [showCityList,setShowCityList] = useState(false)
   return (
     <div className='w-full space-y-2'>
       <div className='flex justify-between items-end border-b pb-2'>
@@ -14,7 +15,7 @@ export default function SearchFilter() {
         <h1 className='text-sm text-gray-400'>Reset</h1>
       </div>
       <div className='py-4'>
-        <CountriesDropdown label={'Amman, Jordan'} setCity={setCity}/>
+      <CustomDropDown hasLabel={true} label={'Amman, Jordan'} showList={showCityList} setShowList={setShowCityList} isValid={true} hasData={true} handler={setCity} data={citiesList.map((item)=>{return item.name})} selectedItem={city}/>
       </div>
       <section className='space-y-2 pb-3 border-b'>
       <label className='pt-4 text-xl font-bold'>Industry</label>

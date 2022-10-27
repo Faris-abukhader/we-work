@@ -34,11 +34,11 @@ export default function Navbar({ burgerHandler,customColor='',hasAnimation=true 
             <ul className={`flex space-x-6 ${hasAnimation && 'animate__animated'}`}>
                 <li className={`hover:text-blue-500 hover:cursor-pointer hover:scale-110 ${hasAnimation && 'animate__animated'} animate__fadeInLeft  animate__slower`}>Home</li>
                 <Link href={`/jobList`}><li className={`hover:text-blue-500 hover:cursor-pointer hover:scale-110 ${hasAnimation && 'animate__animated'}  animate__fadeInDown animate__slower`}>Job list</li></Link>
-               { session && <Link href={`/dashboard`}><li className={`hover:text-blue-500 hover:cursor-pointer hover:scale-110 ${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slower`}>Dashboard</li></Link>}            
+               { session.data && <Link href={`/dashboard`}><li className={`hover:text-blue-500 hover:cursor-pointer hover:scale-110 ${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slower`}>Dashboard</li></Link>}            
             </ul>
         </div>
         {
-          session ? 
+          session.data ? 
           <a onClick={signOut} className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block py-3 px-4 rounded-md outline  bg-blue-800 text-xs text-white hover:cursor-pointer hover:bg-blue-900`}>Sign out</a>
             :
           <Link href={`/auth/signIn`}><a className={`${hasAnimation && 'animate__animated'}  animate__fadeInRight animate__slow hidden md:block py-3 px-4 rounded-md  bg-blue-800 text-xs text-white hover:cursor-pointer hover:bg-blue-900`}>Sign in</a></Link>

@@ -1,75 +1,81 @@
 import {useState,useEffect} from 'react'
+import {wrapper} from '../../../store/store'
+import { useSelector } from 'react-redux'
 import AddNewJobModel from '../../../components/dashboard/allWorks/AddNewJobModel'
 import WorkCard from '../../../components/dashboard/allWorks/WorkCard'
 import AddNewButton from '../../../components/general/AddNewButton'
 import Layout from '../../../components/layout/UserLayout'
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 import axios from 'axios'
-import SegimentPicker from '../../../components/general/SegmentsPicker'
-export default function Index({jobList}) {
+import { setJobs } from '../../../store/slices/job'
+import NoDataFound from '../../../components/general/NoDataFound'
+import ReviewJobModel from '../../../components/dashboard/allWorks/ReviewJobModel'
+import EditJobModel from '../../../components/dashboard/allWorks/EditJobModel'
+export default function Index() {
+  const session = useSession()
+  const token = session.data?.user?.token
+  const jobList = useSelector((state)=>state.job)
+  const accountType = session.data?.user?.accountType
   const [showAddModal,setShowAddModal] = useState(false)
   const [showEditModal,setShowEditModal] = useState(false)
   const [showReviewModal,setShowReviewModal] = useState(false)
   const [reviewModalData,setReviewModalData] = useState({})
   const [updateModalData,setUpdateModalData] = useState({})
 
-
-
   const toggleAddModal = ()=>{
     console.log('toggle')
     setShowAddModal(!showAddModal)
   }
+  const toggleEditModal = ()=>{
+    setShowEditModal(!showEditModal)
+  }
 
-  // const toggleEditModal = ()=>{
-  //   setShowEditModal(!showEditModal)
-  // }
+  const toggleReviewModal = (id='')=>{
+    setReviewModalData(jobList.find((item)=>item.id==id)||{})
+    setShowReviewModal(!showReviewModal)
+  }
 
-  // const toggleReviewModal = (id='')=>{
-  //   setReviewModalData(items.find((item)=>item.id==id)||{})
-  //   setShowReviewModal(!showReviewModal)
-  // }
-
-  // const setItemUpdateId = (id)=>{
-  //   console.log(id)
-  //   dispatch(setData(items.find((item)=>item.id==id)))
-  //   setUpdateModalData(items.find((item)=>item.id==id))
-  //   console.log(items.find((item)=>item.id==id))
-  //   toggleReviewModal()
-  //   toggleEditModal()
-  // }
-
+  const setJopUpdateId = (id)=>{
+    setUpdateModalData(jobList.find((item)=>item.id==id))
+    console.log(jobList.find((item)=>item.id==id))
+    toggleReviewModal()
+    toggleEditModal()
+  }
 
   return (
     <Layout current={`All works`}>
         <div className='w-full h-80 py-10 flex justify-center'>
         <div className='w-full px-2 md:px-20 space-y-4'>
           <div className='flex justify-end'>
-            <AddNewButton title={`Post new job`} handler={toggleAddModal}/>
+            {accountType == 'e' && <AddNewButton title={`Post new job`} handler={toggleAddModal}/>}
           </div>
-        <WorkCard/>
-        <WorkCard/>
-        <WorkCard/>
-
+        {jobList.length > 0 ?
+         jobList.map((item)=><WorkCard key={item.id} {...item} token={token} toggleReviewJobModal={toggleReviewModal}/>)
+        :
+        <NoDataFound label={`You don't have any job posted yet.`}/>
+        }
         </div>
         </div>
-        <AddNewJobModel show={showAddModal} toggle={toggleAddModal}/>
+        <AddNewJobModel show={showAddModal} toggle={toggleAddModal} />
+        <ReviewJobModel show={showReviewModal} toggle={toggleReviewModal} data={reviewModalData} setJobUpdateId={setJopUpdateId} />
+        <EditJobModel show={showEditModal} toggle={toggleEditModal} data={updateModalData}/>
     </Layout>
   )
 }
 
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
   const session = await getSession(ctx)
 
   if (session) {
       console.log('*************')
       console.log(session.user)
-      const jobRequest = await axios.get(`${process.env.API_URL}/job/all`)
+      const jobRequest = await axios.get(`${process.env.API_URL}/job/all/employerId/${session.user.id}`)
       const jobList = jobRequest.data.data
+      store.dispatch(setJobs(jobList))
+      
       return {
-          props: {
-            jobList
-          }
+          props: {}
       }
   } else {
       return {
@@ -79,5 +85,5 @@ export const getServerSideProps = async (ctx) => {
           props: {}
       }
   }
-}
+})
 

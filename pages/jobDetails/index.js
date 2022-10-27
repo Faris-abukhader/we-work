@@ -1,24 +1,53 @@
-import React from 'react'
 import EmploymentInfo from '../../components/jobDetails/EmploymentInfo'
 import EmpolyerInfo from '../../components/jobDetails/EmpolyerInfo'
 import JobContent from '../../components/jobDetails/JobContent'
 import JobHeader from '../../components/jobDetails/JobHeader'
 import SimilarJobs from '../../components/jobDetails/SimilarJobs'
 import Layout from '../../components/layout/Layout'
-export default function index() {
+import { wrapper } from '../../store/store'
+import axios from 'axios'
+export default function Index({job,simpilarJobs}) {
   return (
     <Layout navBackgroundColor='#000' navHasAnimation={false}>
-       <JobHeader/>
+       <JobHeader jobTitle={job.title}/>
        <div className='w-full py-8 flex-row md:flex  grow-0 md:space-x-3'>
         <div className='w-full space-y-3'>
-        <EmploymentInfo/>
-        <JobContent jobDescription='flkhaer fkhae rkjgae rgjkaerghkjae gjkae hajekrhajg kaehrg akje ghaejk ghaekjg heaj gjkea gkjea gajkeg ejkrg aehkjg ha gahekj gaehgj khaek gjahe gkhaerj gaek hriu gajkrgeurigegiueh gaeu geua igh aegaerugkfdgiaoeguaotevioaeg ;er iogaeiarje eirhuga vjberiu'/>
+        <EmploymentInfo location={job.location} category={job.jobCategory} salary={job.salary}/>
+        <JobContent jobDescription={job.description}/>
         </div>
         <div className='w-full md:w-1/3 space-y-3'>
-        <EmpolyerInfo/>
-        <SimilarJobs/>
+        <EmpolyerInfo ownerName={job.employer?.user?.firstName+' '+job.employer?.user?.lastName} avatar={job.employer?.user?.avatar}/>
+        <SimilarJobs data={simpilarJobs}/>
         </div>
        </div>
     </Layout>
   )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+  const {id} = ctx.query
+  console.log(id)
+  try{
+    const jobRequest = await axios.get(`${process.env.API_URL}/job/${id}`)
+    const targetJob = jobRequest.data
+    const simpilarJobs = await (await axios.get(`${process.env.API_URL}/job/search?category=${targetJob.jobCategory}&name=`)).data.data
+    if(targetJob.id){
+      return {
+        props: {
+          job:targetJob,
+          simpilarJobs,
+        }
+      }
+    }
+  }catch(err){
+    console.log(err)
+    return {
+      redirect: {
+          destination: '/jobList'
+      },
+      props: {}
+   }
+  }
+})
+
+
