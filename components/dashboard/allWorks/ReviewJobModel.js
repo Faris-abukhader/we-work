@@ -1,11 +1,7 @@
 import  { useState,useEffect } from 'react'
 import { CustomModal } from '../../general/CustomModel'
-import InputWithLabel from '../../general/InputWithLabel'
-import CloseButton from '../../general/CloseButton'
-import SegimentPicker from '../../general/SegmentsPicker'
-import CustomDropDown from '../../general/CustomDropdown'
-import citiesList from '../../../utils/citiesList'
-import jobCategories from '../../../utils/jobCategories'
+import {InputWithLabel,CloseButton,SegimentPicker,CustomDropDown} from '../../general/general'
+import {citiesList,jobCategories} from '../../../utils/utils'
 import Image from 'next/image'
 export default function ReviewJobModel({show, toggle, data ,setJobUpdateId}) {
     const [job,setJob] = useState({title:'',location:'',description:'',salary:'',skillRequired:'',jobCategory:''})

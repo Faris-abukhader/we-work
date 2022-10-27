@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import Image from 'next/image'
-import Salary from '../general/Salary'
-import Location from '../general/Location'
+import {Salary,Location} from '../general/general'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 export default function JobCard({id,ownerAvatar='elon.webp',owner='Bing Search',location='Amman,Jordan',description='',popularKey='ReactJs',jobTitle='React Software Engineer',jobType='Full time',createdAt='6 mins ago',salary=250 ,handleApplyButton,propsals=0}) {

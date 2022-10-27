@@ -4,4 +4,4 @@ const isValid =(target)=>{
   return target.match(email)
 }
 
-module.exports = {isValid}
+export default isValid

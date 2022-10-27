@@ -30,4 +30,4 @@ const fireNotification = ({label,icon='success'||'error'||'warning'||'info'||'qu
       })
 }
 
-module.exports = {fireNotification}
+export default fireNotification

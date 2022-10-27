@@ -1,8 +1,8 @@
-import {citiesList} from './citiesList'
-import {getUserList} from './dashboardBages'
-import {isValid} from './emailValidation'
-import {fireNotification} from './fireNotification'
-import sectionsData from './footerSections'
+import citiesList from './citiesList'
+import getUserList from './dashboardBages'
+import isValid from './emailValidation'
+import fireNotification from './fireNotification'
+import footerSections from './footerSections'
 import industryList from './industries'
 import jobCategories from './jobCategories'
 import timingOptions from './jobFinishingTimeOptions'
@@ -14,7 +14,7 @@ module.exports = {
     getUserList,
     isValid,
     fireNotification,
-    sectionsData,
+    footerSections,
     industryList,
     jobCategories,
     timingOptions,

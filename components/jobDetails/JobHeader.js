@@ -1,6 +1,5 @@
-import React from 'react'
 import Image from 'next/image'
-import TypeAndTimeLabels from '../general/TypeAndTimeLabels'
+import {TypeAndTimeLabels} from '../general/general'
 import { useSession } from 'next-auth/react'
 export default function JobHeader({jobTitle='Senior Full Stack Engineer, Creator Success Full Time',jobType='Full time',createdAt='2h ago'}) {
   const session = useSession()

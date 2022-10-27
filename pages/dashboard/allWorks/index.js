@@ -1,16 +1,12 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import {wrapper} from '../../../store/store'
 import { useSelector } from 'react-redux'
-import AddNewJobModel from '../../../components/dashboard/allWorks/AddNewJobModel'
-import WorkCard from '../../../components/dashboard/allWorks/WorkCard'
-import AddNewButton from '../../../components/general/AddNewButton'
+import {AddNewJobModel,ReviewJobModel,EditJobModel,WorkCard} from '../../../components/dashboard/allWorks/allWorks'
+import {AddNewButton,NoDataFound} from '../../../components/general/general'
 import Layout from '../../../components/layout/UserLayout'
 import { getSession, useSession } from 'next-auth/react'
 import axios from 'axios'
 import { setJobs } from '../../../store/slices/job'
-import NoDataFound from '../../../components/general/NoDataFound'
-import ReviewJobModel from '../../../components/dashboard/allWorks/ReviewJobModel'
-import EditJobModel from '../../../components/dashboard/allWorks/EditJobModel'
 export default function Index() {
   const session = useSession()
   const token = session.data?.user?.token

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function AddNewButton({title,hasHandler=true,handler}) {
   const clickHandler = ()=>{
     if(hasHandler){

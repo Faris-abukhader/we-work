@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { isValid as emailValidation } from '../../utils/emailValidation'
 import Link from "next/link"
 import { signIn } from "next-auth/react"
-import { fireNotification } from '../../utils/notification'
-import InputWithLabel from "../../components/general/InputWithLabel"
+import { fireNotification,isValid as emailValidation } from '../../utils/utils'
+import {InputWithLabel} from "../../components/general/general"
 export default function SignIn() {
     const [credentials, setCredentials] = useState({ email: '', password: '' })
     const [isValid, setIsValid] = useState({ email: false, password: false })
@@ -38,7 +37,7 @@ export default function SignIn() {
         if (request.status == 200) {
             router.push('/dashboard')
         } else {
-            fireNotification('your password or email is not correct', 'error')
+            fireNotification({label:'your password or email is not correct', icon:'error'})
         }
     }
 

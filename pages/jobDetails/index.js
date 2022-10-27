@@ -1,8 +1,4 @@
-import EmploymentInfo from '../../components/jobDetails/EmploymentInfo'
-import EmpolyerInfo from '../../components/jobDetails/EmpolyerInfo'
-import JobContent from '../../components/jobDetails/JobContent'
-import JobHeader from '../../components/jobDetails/JobHeader'
-import SimilarJobs from '../../components/jobDetails/SimilarJobs'
+import {EmploymentInfo,EmpolyerInfo,JobContent,JobHeader,SimilarJobs} from '../../components/jobDetails/jobDetails'
 import Layout from '../../components/layout/Layout'
 import { wrapper } from '../../store/store'
 import axios from 'axios'
@@ -26,7 +22,6 @@ export default function Index({job,simpilarJobs}) {
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
   const {id} = ctx.query
-  console.log(id)
   try{
     const jobRequest = await axios.get(`${process.env.API_URL}/job/${id}`)
     const targetJob = jobRequest.data

@@ -1,13 +1,9 @@
-import Banner from '../../components/jobList/Banner'
-import JobCard from '../../components/jobList/JobCard'
-import SearchFilter from '../../components/jobList/SearchFilter'
-import SortingBar from '../../components/jobList/SortingBar'
+import {Banner,JobCard,SearchFilter,SortingBar,ApplyForJobModel} from '../../components/jobList/jobList'
 import Layout from '../../components/layout/Layout'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import {fireNotification} from '../../utils/fireNotification'
+import {fireNotification} from '../../utils/utils'
 import { useRouter } from 'next/router'
-import ApplyForJobModel from '../../components/jobList/ApplyForJobModel'
 import { useState } from 'react'
 export default function Index({ jobList }) {
   console.log(jobList)

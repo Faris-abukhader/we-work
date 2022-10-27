@@ -1,17 +1,12 @@
 import  { useState,useEffect } from 'react'
 import { CustomModal } from '../../general/CustomModel'
-import InputWithLabel from '../../general/InputWithLabel'
-import CloseButton from '../../general/CloseButton'
-import ConfirmButton from '../../general/ConfirmButton'
-import SegimentPicker from '../../general/SegmentsPicker'
-import CustomDropDown from '../../general/CustomDropdown'
-import citiesList from '../../../utils/citiesList'
-import jobCategories from '../../../utils/jobCategories'
+import {InputWithLabel,CloseButton,ConfirmButton,SegimentPicker,CustomDropDown} from '../../general/general'
+import {citiesList,jobCategories} from '../../../utils/utils'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import {fireNotification} from '../../../utils/fireNotification'
 import { useDispatch } from 'react-redux'
-import { addNewJob, modifyOneJob } from '../../../store/slices/job'
+import { modifyOneJob } from '../../../store/slices/job'
 export default function EditJobModel({show,toggle,data}) {
     console.log(data)
     const session = useSession()
