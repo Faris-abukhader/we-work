@@ -1,4 +1,4 @@
-import addNewButton from './AddNewButton'
+import AddNewButton from './AddNewButton'
 import Checkbox from './Checkbox'
 import CloseButton from './CloseButton'
 import ConfirmButton from './ConfirmButton'
@@ -10,10 +10,12 @@ import NoDataFound from './NoDataFound'
 import Salary from './Salary'
 import SearchBar from './SearchBar'
 import SegimentPicker from './SegmentsPicker'
-import TypeAndTimeLables from './TypeAndTimeLabels'
-
-module.exports ={
-    addNewButton,
+import TypeAndTimeLabels from './TypeAndTimeLabels'
+import EditButton from './EditButton'
+import AcceptButton from './AcceptButton'
+import DeclineButton from './DeclineButton'
+export{
+    AddNewButton,
     Checkbox,
     CloseButton,
     ConfirmButton,
@@ -25,5 +27,9 @@ module.exports ={
     Salary,
     SearchBar,
     SegimentPicker,
-    TypeAndTimeLables
+    TypeAndTimeLabels,
+    EditButton,
+    AcceptButton,
+    DeclineButton
+
 }

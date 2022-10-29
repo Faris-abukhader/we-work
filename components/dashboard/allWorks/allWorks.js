@@ -2,10 +2,12 @@ import EditJobModel from "./EditJobModel";
 import AddNewJobModel from "./AddNewJobModel";
 import ReviewJobModel from "./ReviewJobModel";
 import WorkCard from "./WorkCard";
+import ProposalList from "./ProposalList";
 
-module.exports = {
+export{
     EditJobModel,
     AddNewJobModel,
     ReviewJobModel,
-    WorkCard
+    WorkCard,
+    ProposalList
 }

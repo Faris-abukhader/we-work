@@ -65,12 +65,12 @@ export default function EditJobModel({show,toggle,data}) {
   
     useEffect(() => {
       setValid(() => ({
-        ['title']: job.title.length > 0 ? true : false,
-        ['description']: job.description.length > 0 ? true : false,
-        ['location']: job.location.length > 0 ? true : false,
-        ['salary']: Number(job.salary) > 0 ? true : false,
-        ['skillRequired']: job.skillRequired.length > 0 ? true : false,
-        ['jobCategory']: job.jobCategory.length > 0 ? true : false,
+        ['title']: job?.title?.length > 0 ? true : false,
+        ['description']: job?.description?.length > 0 ? true : false,
+        ['location']: job?.location?.length > 0 ? true : false,
+        ['salary']: Number(job?.salary) > 0 ? true : false,
+        ['skillRequired']: job?.skillRequired?.length > 0 ? true : false,
+        ['jobCategory']: job?.jobCategory?.length > 0 ? true : false,
       }))
       validation()
     }, [job])

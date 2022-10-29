@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 import SearchFilter from "./SearchFilter";
 import SearchBar from "../general/SearchBar";
 
-module.exports = {
+export{
     ApplyForJobModel,
     Banner,
     JobCard,

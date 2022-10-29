@@ -3,11 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 const initialState = []
 
-export const jobSlice = createSlice({
-  name: 'JobSlice',
+export const proposalSlice = createSlice({
+  name: 'ProposalSlice',
   initialState,
   reducers: {
-      setJobs: (state,{payload}) =>{
+      setProposals: (state,{payload}) =>{
         if(payload !== undefined){
           return [...payload]
         }
@@ -22,13 +22,13 @@ export const jobSlice = createSlice({
       sortByName:(state)=>{
         return state.sort((a, b) => a.name.localeCompare(b.name))
       },
-      addNewJob: (state,{payload}) =>{
+      addNewProposal: (state,{payload}) =>{
           state.push(payload)
       }, 
-      deleteOneJob: (state,{payload}) =>{
+      deleteOneProposal: (state,{payload}) =>{
         return state.filter((item)=>item.id!=payload)
       },
-      modifyOneJob: (state,{payload}) =>{
+      modifyOneProposal: (state,{payload}) =>{
          return  state.map((item)=>{
             if(item.id != payload.id){
               return item
@@ -36,33 +36,16 @@ export const jobSlice = createSlice({
             return payload
           })
       },
-      modifyOneProposal:(state,{payload})=>{
-        return state.map((item)=>{
-          if(item.id != payload.jobId){
-            return item
-          }
-          console.log('target job is ')
-          console.log(item)
-          item.proposalList.map((proposal)=>{
-            if(proposal.id != payload.id){
-              return proposal
-            }
-            console.log('target proposal is ')
-            console.log(proposal)
-            return payload
-          })
-        })
-      }
   },
   extraReducers:{
    [HYDRATE]: (state,{payload}) =>{
     console.log(payload)
-    return [...payload.job]
+    return [...payload.proposal]
    }
   },
 })
 
 
-export const { setJobs,sortById,sortByDate,sortByName,addNewJob,modifyOneJob,modifyOneProposal,deleteOneJob} = jobSlice.actions
+export const { setProposals,sortById,sortByDate,sortByName,addNewProposal,modifyOneProposal,deleteOneProposal} = proposalSlice.actions
 
-export default jobSlice.reducer
+export default proposalSlice.reducer

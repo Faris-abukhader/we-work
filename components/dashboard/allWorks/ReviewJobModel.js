@@ -1,6 +1,6 @@
 import  { useState,useEffect } from 'react'
 import { CustomModal } from '../../general/CustomModel'
-import {InputWithLabel,CloseButton,SegimentPicker,CustomDropDown} from '../../general/general'
+import {InputWithLabel,CloseButton,SegimentPicker,CustomDropDown,EditButton} from '../../general/general'
 import {citiesList,jobCategories} from '../../../utils/utils'
 import Image from 'next/image'
 export default function ReviewJobModel({show, toggle, data ,setJobUpdateId}) {
@@ -20,9 +20,7 @@ export default function ReviewJobModel({show, toggle, data ,setJobUpdateId}) {
         <section className="py-1">
           <div className='grid grid-cols-1 w-full space-y-3'>
             <div className='flex justify-end'>
-                <div onClick={()=>setJobUpdateId(data?.id)} className='hover:border-2 w-[30px] h-[30px] border-blue-600 rounded-full hover:cursor-pointer'>
-                <Image src={`/icons/edit.svg`} width={30} height={30} alt='edit'/>
-                </div>
+              <EditButton clickHandler={()=>setJobUpdateId(data?.id)}/>
             </div>
             <InputWithLabel label={`Job Title`} name={`title`} value={job.title} hasHandler={false} />
             <InputWithLabel label={`Job Description`} isTextArea={true} name={`description`} value={job.description} hasHandler={false}  />

@@ -1,4 +1,4 @@
-import JobTinyCard from './JobTinyCard'
+import {JobTinyCard} from './jobDetails'
 export default function SimilarJobs({ data }) {
     return (
         <div className='w-full border-2 border-gray-100 rounded-md p-3'>

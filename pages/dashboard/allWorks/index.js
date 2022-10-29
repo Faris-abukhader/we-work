@@ -27,6 +27,8 @@ export default function Index() {
   }
 
   const toggleReviewModal = (id='')=>{
+    console.log('^^^^^^^^^^^^^')
+    console.log(jobList.find((item)=>item.id==id)||{})
     setReviewModalData(jobList.find((item)=>item.id==id)||{})
     setShowReviewModal(!showReviewModal)
   }
@@ -39,7 +41,7 @@ export default function Index() {
   }
 
   return (
-    <Layout current={`All works`}>
+    <Layout current={`All works`} accountType='e'>
         <div className='w-full h-80 py-10 flex justify-center'>
         <div className='w-full px-2 md:px-20 space-y-4'>
           <div className='flex justify-end'>
@@ -62,8 +64,9 @@ export default function Index() {
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
   const session = await getSession(ctx)
+  const userAccount = session.user?.accountType
 
-  if (session) {
+  if (userAccount == 'e') {
       console.log('*************')
       console.log(session.user)
       const jobRequest = await axios.get(`${process.env.API_URL}/job/all/employerId/${session.user.id}`)
@@ -76,7 +79,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx
   } else {
       return {
           redirect: {
-              destination: '/api/auth/signin'
+              destination: '/dashboard'
           },
           props: {}
       }

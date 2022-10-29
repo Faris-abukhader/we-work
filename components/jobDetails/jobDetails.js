@@ -6,7 +6,7 @@ import JobHeader from "./JobHeader";
 import JobTinyCard from "./JobTinyCard";
 import SimilarJobs from "./SimilarJobs";
 
-module.exports = {
+export {
     EmploymentInfo,
     EmpolyerInfo,
     InfoAttribute,

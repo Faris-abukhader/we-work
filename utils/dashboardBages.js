@@ -1,11 +1,11 @@
 const freelancer = [
     {
         title:'All works',
-        url:'allWorks'
+        url:'freelancer-all-works'
     },
     {
         title:'Proposals',
-        url:'freelancerProposals'
+        url:'freelancer-proposals'
     },
     {
         title:'Transaction history',

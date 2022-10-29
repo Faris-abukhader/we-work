@@ -5,7 +5,7 @@ export default function SegimentPicker({isValid=true,isReview=false,value,hasHan
     const [currentItem,setCurrentItem] = useState('')
 
     useEffect(()=>{
-        if(value.length > 0){
+        if(value?.length > 0){
             setItemList(value.split(','))
         }
     },[value])
