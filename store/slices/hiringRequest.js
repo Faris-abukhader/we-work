@@ -3,11 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 const initialState = []
 
-export const jobSlice = createSlice({
-  name: 'JobSlice',
+export const hiringRequestSlice = createSlice({
+  name: 'HiringSlice',
   initialState,
   reducers: {
-      setJobs: (state,{payload}) =>{
+      setHiringRequests: (state,{payload}) =>{
         if(payload !== undefined){
           return [...payload]
         }
@@ -22,13 +22,13 @@ export const jobSlice = createSlice({
       sortByName:(state)=>{
         return state.sort((a, b) => a.name.localeCompare(b.name))
       },
-      addNewJob: (state,{payload}) =>{
+      addNewHiringRequest: (state,{payload}) =>{
           state.push(payload)
       }, 
-      deleteOneJob: (state,{payload}) =>{
+      deleteOneHiringRequest: (state,{payload}) =>{
         return state.filter((item)=>item.id!=payload)
       },
-      modifyOneJob: (state,{payload}) =>{
+      modifyOneHiringRequest: (state,{payload}) =>{
          return  state.map((item)=>{
             if(item.id != payload.id){
               return item
@@ -40,12 +40,12 @@ export const jobSlice = createSlice({
   extraReducers:{
    [HYDRATE]: (state,{payload}) =>{
     console.log(payload)
-    return [...payload.job]
+    return [...payload.hiringRequest]
    }
   },
 })
 
 
-export const { setJobs,sortById,sortByDate,sortByName,addNewJob,modifyOneJob,deleteOneJob} = jobSlice.actions
+export const { setHiringRequests,sortById,sortByDate,sortByName,addNewHiringRequest,modifyOneHiringRequest,deleteOneHiringRequest} = hiringRequestSlice.actions
 
-export default jobSlice.reducer
+export default hiringRequestSlice.reducer

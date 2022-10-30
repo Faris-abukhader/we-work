@@ -52,15 +52,3 @@ export default function ProposalList({data=[]}) {
     </div>
   )
 }
-
-// here we have Errror
-/*
-Module not found: Can't resolve './allWorks'
-  4 | import Image from 'next/image'
-  5 | import { useState } from 'react'
-> 6 | import {ProposalList} from './allWorks'
-  7 | export default function WorkCard({ id, title,proposalList, location, salary, isClosed, createdAt, _count, toggleReviewJobModal, token }) {
-  8 |   const [showProposal,setShowProposal] = useState(false)
-  9 | 
-
-*/

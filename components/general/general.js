@@ -3,6 +3,7 @@ import Checkbox from './Checkbox'
 import CloseButton from './CloseButton'
 import ConfirmButton from './ConfirmButton'
 import CustomDropDown from './CustomDropdown'
+import DropDown  from './DropDown'
 import CustomToggleButton from './CustomToggleButton'
 import InputWithLabel from './InputWithLabel'
 import Location from './Location'
@@ -20,6 +21,7 @@ export{
     CloseButton,
     ConfirmButton,
     CustomDropDown,
+    DropDown,
     CustomToggleButton,
     InputWithLabel,
     Location,

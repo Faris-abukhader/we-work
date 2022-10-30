@@ -22,12 +22,12 @@ const employer = [
         url:'allWorks'
     },
     {
-        title:'Transaction history',
-        url:'transactionHistory'
+        title:'Hired history',
+        url:'employer-hired-history'
     },
     {
-        title:'Hired history',
-        url:'hiredHistory'
+        title:'Transaction history',
+        url:'transactionHistory'
     },
     {
         title:'Message',
