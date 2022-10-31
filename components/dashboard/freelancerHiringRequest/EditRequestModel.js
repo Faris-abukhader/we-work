@@ -10,14 +10,15 @@ export default function EditRequestModel({show,toggle,data}) {
     console.log(data)
     const session = useSession()
     const dispatch = useDispatch()
+    const userId = session.data?.user?.id
     const token = session.data?.user?.token
     const [disable,setDisable] = useState(true)
-    const [isValid, setValid] = useState({ ownerNote:false,salary:false })
-    const [request,setRequest] = useState({isEmployerAccepet:false,ownerNote:'',salary:0})
+    const [isValid, setValid] = useState({ freelancerNote:false })
+    const [request,setRequest] = useState({isFreelancerAccept:false,freelancerNote:''})
 
     useEffect(()=>{
        if(show){
-        setRequest({isEmployerAccepet:data?.isEmployerAccepet,ownerNote:data?.ownerNote,salary:data?.salary})
+        setRequest({isFreelancerAccept:data?.isFreelancerAccept,freelancerNote:data?.freelancerNote})
       }
     },[show])
 
@@ -28,17 +29,17 @@ export default function EditRequestModel({show,toggle,data}) {
       }))
     }
 
-    const setIsEmploymentAccept = (isAccept)=>{
+    const setIsFreelancerAccept = (isAccept)=>{
       setRequest((prevs) => ({
         ...prevs,
-        ['isEmployerAccepet']: isAccept
+        ['isFreelancerAccept']: isAccept
       }))
     }
 
 
     
     const validation = () => {
-      if (isValid.ownerNote) {
+      if (isValid.freelancerNote) {
         setDisable(false)
       } else {
         setDisable(true)
@@ -46,13 +47,12 @@ export default function EditRequestModel({show,toggle,data}) {
     }
   
     const reset = () => {
-      setRequest({isEmployerAccepet:false,ownerNote:''})
+      setRequest({isFreelancerAccept:false,ownerNote:''})
     }
   
     useEffect(() => {
       setValid(() => ({
-        ['ownerNote']: request.ownerNote.length > 0 ? true : false,
-        ['salary']: request.salary  > 0 ? true : false,
+        ['freelancerNote']: request?.freelancerNote?.length > 0 ? true : false,
       }))
       validation()
     }, [request])
@@ -63,7 +63,10 @@ export default function EditRequestModel({show,toggle,data}) {
     },[request])
 
     const updateOneRequest = ()=>{
-      axios.put(`${process.env.API_URL}/hiringRequest/${data.id}`,{...request},{ headers: { token } })
+      console.log(request)
+      let temp = request
+      temp.isFreelancerAccept = request.isFreelancerAccept == 'accept' ? true:false
+      axios.put(`${process.env.API_URL}/hiringRequest/freelancer/${data.id}`,{...temp},{ headers: { token } })
       .then((res) => {
         fireNotification({label:'Hiring request updated successfully.',icon:'success'})
         dispatch(modifyOneHiringRequest(res.data))
@@ -85,9 +88,8 @@ export default function EditRequestModel({show,toggle,data}) {
       <CustomModal.Body>
         <section className="py-1">
           <div className='grid grid-cols-1 w-full space-y-3'>
-          <InputWithLabel label={`Description`} isTextArea={true} isValid={isValid.ownerNote} name={`ownerNote`} value={request.ownerNote} inputHandler={inputHandler} />
-          <InputWithLabel label={`Salary`} isValid={isValid.salary} type={`number`} name={`salary`} value={request.salary} inputHandler={inputHandler} />
-          <CustomDropDown mainLabel='Do you accept' hasLabel={true} label={'accept or refuse'} hasData={true} handler={setIsEmploymentAccept} data={['accept','refuse']} selectedItem={request.isEmployerAccepet?'accept':'refuse'}/>
+          <InputWithLabel label={`Description`} isTextArea={true} isValid={isValid.freelancerNote} name={`freelancerNote`} value={request.freelancerNote} inputHandler={inputHandler} />
+          <CustomDropDown mainLabel='Do you accept' hasLabel={true} label={'accept or refuse'} hasData={true} handler={setIsFreelancerAccept} data={['accept','refuse']} selectedItem={request.isFreelancerAccept?'accept':'refuse'}/>
           </div>
         </section>
       </CustomModal.Body>

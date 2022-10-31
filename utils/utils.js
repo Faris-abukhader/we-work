@@ -1,5 +1,5 @@
 import citiesList from './citiesList'
-import getUserList from './dashboardBages'
+import getUserList from './dashboardPages'
 import isValid from './emailValidation'
 import fireNotification from './fireNotification'
 import footerSections from './footerSections'

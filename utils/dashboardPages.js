@@ -8,8 +8,8 @@ const freelancer = [
         url:'freelancer-proposals'
     },
     {
-        title:'Transaction history',
-        url:'transactionHistory'
+        title:'Hired history',
+        url:'freelancer-hired-history'
     },
     {
         title:'Message',
@@ -24,10 +24,6 @@ const employer = [
     {
         title:'Hired history',
         url:'employer-hired-history'
-    },
-    {
-        title:'Transaction history',
-        url:'transactionHistory'
     },
     {
         title:'Message',

@@ -3,6 +3,7 @@ import { createWrapper } from 'next-redux-wrapper'
 import hiringRequestSlice from './slices/hiringRequest'
 import ItemSlice from './slices/item'
 import jobSlice from './slices/job'
+import productSlice from './slices/product'
 import proposalSlice from './slices/proposal'
 
 const makeStore = ()=>configureStore({
@@ -11,6 +12,7 @@ const makeStore = ()=>configureStore({
       job:jobSlice,
       proposal:proposalSlice,
       hiringRequest:hiringRequestSlice,
+      product:productSlice
   },
 })
 
