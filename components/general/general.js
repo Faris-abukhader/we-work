@@ -15,6 +15,9 @@ import TypeAndTimeLabels from './TypeAndTimeLabels'
 import EditButton from './EditButton'
 import AcceptButton from './AcceptButton'
 import DeclineButton from './DeclineButton'
+import ModifyButton from './ModifyButton'
+import AddButton from './AddButton'
+import DeleteButton from './DeleteButton'
 export{
     AddNewButton,
     Checkbox,
@@ -32,6 +35,9 @@ export{
     TypeAndTimeLabels,
     EditButton,
     AcceptButton,
-    DeclineButton
+    DeclineButton,
+    ModifyButton,
+    AddButton,
+    DeleteButton
 
 }

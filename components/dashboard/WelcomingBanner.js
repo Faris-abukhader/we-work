@@ -1,5 +1,5 @@
 import Image from "next/image"
-export default function WelcomingBanner({ username = '', worksNum = 0 }) {
+export default function WelcomingBanner({ username = '', worksNum = 0,accountType='' }) {
   return (
     <div className='w-full p-5'>
       <div className='relative bg-customDarkPurple flex justify-center items-center rounded-lg w-full h-[350px] shadow-md'>
@@ -12,7 +12,10 @@ export default function WelcomingBanner({ username = '', worksNum = 0 }) {
         </div>
         <div className="text-center text-gray-100 space-y-4 px-5 pt-20">
           <h1 className="text-3xl">Welcome <b>{username}</b></h1>
-          <p>You have done {worksNum} works. Check your new workds in your profile.</p>
+          {accountType=='e'? <p>You have Published {worksNum[0]} job(s) , and sent {worksNum[1]} hiring request. Check your new workds in your profile.</p>
+            :
+            <p>You have sent {worksNum[0]} job proposal(s) , and recived {worksNum[1]} hiring request(s) , and done {worksNum[2]} job successfully. Check your new workds in your profile.</p>
+          }
         </div>
       </div>
     </div>

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { isValid as emailValidation } from '../../utils/emailValidation'
+import { isValid as emailValidation,fireNotification} from '../../utils/utils'
 import Link from "next/link"
 import AccountTypeCard from "../../components/auth/AccountTypeCard"
 import axios from "axios"
-import { fireNotification } from '../../utils/notification'
 import InputWithLabel from "../../components/general/InputWithLabel"
 export default function SignUp() {
     const [credentials, setCredentials] = useState({ email: '', password: '', firstName: '', lastName: '', accountType: '' })
