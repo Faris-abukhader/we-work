@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {wrapper} from '../../../store/store'
 import { useSelector } from 'react-redux'
 import {ReviewRequestModel,EditRequestModel,RequestCard} from '../../../components/dashboard/freelancerHiringRequest/freelancerHiringRequest'
-import {AddNewButton,NoDataFound} from '../../../components/general/general'
+import {NoDataFound} from '../../../components/general/general'
 import Layout from '../../../components/layout/UserLayout'
 import { getSession, useSession } from 'next-auth/react'
 import axios from 'axios'
@@ -10,7 +10,6 @@ import { setHiringRequests } from '../../../store/slices/hiringRequest'
 export default function Index() {
   const session = useSession()
   const requestList = useSelector((state)=>state.hiringRequest)
-  const accountType = session.data?.user?.accountType
   const [showEditModal,setShowEditModal] = useState(false)
   const [showReviewModal,setShowReviewModal] = useState(false)
   const [reviewModalData,setReviewModalData] = useState({})

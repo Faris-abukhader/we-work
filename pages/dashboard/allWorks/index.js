@@ -55,7 +55,7 @@ export default function Index() {
         </div>
         </div>
         <AddNewJobModel show={showAddModal} toggle={toggleAddModal} />
-        <ReviewJobModel show={showReviewModal} toggle={toggleReviewModal} data={reviewModalData} setJobUpdateId={setJopUpdateId} />
+        <ReviewJobModel show={showReviewModal} toggle={toggleReviewModal} data={reviewModalData} setJobUpdateId={setJopUpdateId} token={token} />
         <EditJobModel show={showEditModal} toggle={toggleEditModal} data={updateModalData}/>
     </Layout>
   )

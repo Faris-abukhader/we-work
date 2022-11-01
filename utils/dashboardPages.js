@@ -10,10 +10,6 @@ const freelancer = [
     {
         title:'Hired history',
         url:'freelancer-hired-history'
-    },
-    {
-        title:'Message',
-        url:'message'
     }
 ]
 const employer = [
@@ -24,10 +20,6 @@ const employer = [
     {
         title:'Hired history',
         url:'employer-hired-history'
-    },
-    {
-        title:'Message',
-        url:'message'
     }
 ]
 

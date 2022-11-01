@@ -5,7 +5,7 @@ import {fireNotification} from '../../../utils/utils'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
-import { modifyOneHiringRequest } from '../../../store/slices/hiringRequest'
+import { modifyOneProduct } from '../../../store/slices/product'
 export default function EditRequestModel({show,toggle,data}) {
     console.log(data)
     const session = useSession()
@@ -13,33 +13,24 @@ export default function EditRequestModel({show,toggle,data}) {
     const userId = session.data?.user?.id
     const token = session.data?.user?.token
     const [disable,setDisable] = useState(true)
-    const [isValid, setValid] = useState({ freelancerNote:false })
-    const [request,setRequest] = useState({isFreelancerAccept:false,freelancerNote:''})
+    const [isValid, setValid] = useState({ content:false })
+    const [product,setProduct] = useState({content:''})
 
     useEffect(()=>{
        if(show){
-        setRequest({isFreelancerAccept:data?.isFreelancerAccept,freelancerNote:data?.freelancerNote})
+        setProduct({content:data?.content})
       }
     },[show])
 
     const inputHandler = (e) => {
-      setRequest((prevs) => ({
+      setProduct((prevs) => ({
         ...prevs,
         [e.target.name]: e.target.value
       }))
     }
-
-    const setIsFreelancerAccept = (isAccept)=>{
-      setRequest((prevs) => ({
-        ...prevs,
-        ['isFreelancerAccept']: isAccept
-      }))
-    }
-
-
     
     const validation = () => {
-      if (isValid.freelancerNote) {
+      if (isValid.content) {
         setDisable(false)
       } else {
         setDisable(true)
@@ -47,29 +38,21 @@ export default function EditRequestModel({show,toggle,data}) {
     }
   
     const reset = () => {
-      setRequest({isFreelancerAccept:false,ownerNote:''})
+      setProduct({content:''})
     }
   
     useEffect(() => {
       setValid(() => ({
-        ['freelancerNote']: request?.freelancerNote?.length > 0 ? true : false,
+        ['content']: product?.content?.length > 0 ? true : false,
       }))
       validation()
-    }, [request])
+    }, [product])
   
-
-    useEffect(()=>{
-      console.log(request)
-    },[request])
-
-    const updateOneRequest = ()=>{
-      console.log(request)
-      let temp = request
-      temp.isFreelancerAccept = request.isFreelancerAccept == 'accept' ? true:false
-      axios.put(`${process.env.API_URL}/hiringRequest/freelancer/${data.id}`,{...temp},{ headers: { token } })
+    const updateOneProduct = ()=>{
+      axios.put(`${process.env.API_URL}/product/${data.id}`,{...product},{ headers: { token } })
       .then((res) => {
-        fireNotification({label:'Hiring request updated successfully.',icon:'success'})
-        dispatch(modifyOneHiringRequest(res.data))
+        fireNotification({label:'Product updated successfully.',icon:'success'})
+        dispatch(modifyOneProduct(res.data))
         toggle()
         reset()
         console.log(res)
@@ -84,18 +67,17 @@ export default function EditRequestModel({show,toggle,data}) {
       toggle()
     }
   return (
-    <CustomModal show={show} toggle={toggle} title={`Update a hiring request`} >
+    <CustomModal show={show} toggle={toggle} title={`Update a product`} >
       <CustomModal.Body>
         <section className="py-1">
           <div className='grid grid-cols-1 w-full space-y-3'>
-          <InputWithLabel label={`Description`} isTextArea={true} isValid={isValid.freelancerNote} name={`freelancerNote`} value={request.freelancerNote} inputHandler={inputHandler} />
-          <CustomDropDown mainLabel='Do you accept' hasLabel={true} label={'accept or refuse'} hasData={true} handler={setIsFreelancerAccept} data={['accept','refuse']} selectedItem={request.isFreelancerAccept?'accept':'refuse'}/>
+          <InputWithLabel label={`Product content`} isTextArea={true} isValid={isValid.content} name={`content`} value={product.content} inputHandler={inputHandler} />
           </div>
         </section>
       </CustomModal.Body>
       <CustomModal.Footer>
         <CloseButton onClickHandler={close}>{`Close`}</CloseButton>
-        <ConfirmButton onClickHandler={updateOneRequest} disable={disable}>{`Confirm`}</ConfirmButton>
+        <ConfirmButton onClickHandler={updateOneProduct} disable={disable}>{`Confirm`}</ConfirmButton>
       </CustomModal.Footer>
     </CustomModal>
   )
