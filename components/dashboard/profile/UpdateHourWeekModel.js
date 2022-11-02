@@ -12,6 +12,12 @@ export default function UpdateHourWeekModel( {show,toggle,data}) {
     const [isValid, setValid] = useState(false)
     const [weeklyHour,setWeeklyHour] = useState('')
 
+    useEffect(()=>{
+     if(show){
+      setWeeklyHour(data??'')
+     }
+    },[show])
+
     
     const validation = () => {
       if (isValid) {

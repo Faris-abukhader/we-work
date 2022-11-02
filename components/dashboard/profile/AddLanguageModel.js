@@ -4,8 +4,11 @@ import {CloseButton,ConfirmButton,CustomDropDown} from '../../general/general'
 import {fireNotification,languageLevels,languagesList} from '../../../utils/utils'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
+import { useDispatch } from 'react-redux'
+import {addNewLanguage as addLanguage} from '../../../store/slices/language'
 export default function AddLanguageModel( {show,toggle}) {
     const session = useSession()
+    const dispatch = useDispatch()
     const userId = session.data?.user?.id
     const token = session.data?.user?.token
     const [disable,setDisable] = useState(true)
@@ -28,7 +31,7 @@ export default function AddLanguageModel( {show,toggle}) {
     useEffect(() => {
       setValid(()=>({
         ['name']:language.name.length > 0 ? true:false,
-        ['level']:language.level > 0 ? true:false,
+        ['level']:language.level.length > 0 ? true:false,
       }))
       validation()
     }, [language])
@@ -41,6 +44,7 @@ export default function AddLanguageModel( {show,toggle}) {
       axios.post(`${process.env.API_URL}/language/${userId}`,{...language},{ headers: { token } })
       .then((res) => {
         fireNotification({label:'New language added successfully.',icon:'success'})
+        dispatch(addLanguage(res.data))
         toggle()
         reset()
         console.log(res)

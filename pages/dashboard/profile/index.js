@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { getSession } from 'next-auth/react'
 import React from 'react'
-import {Header,HourBerWeek,Languages} from '../../../components/dashboard/profile/profile'
+import { useSelector } from 'react-redux'
+import {Education, Header,HourBerWeek,Languages, WorkHistory} from '../../../components/dashboard/profile/profile'
 import Layout from '../../../components/layout/UserLayout'
+import { setEducation } from '../../../store/slices/education'
+import { setLanguage } from '../../../store/slices/language'
 import { wrapper } from '../../../store/store'
-
-export default function index({data}) {
+export default function Index({data}) {
   console.log(data)
   return (
     <Layout>
@@ -14,7 +16,9 @@ export default function index({data}) {
             <div className='grid grid-cols-1 sm:grid-cols-2'>
                 <div>
                     <HourBerWeek weeklyWantingHour={data?.freelancer?.weeklyWantingHour}/>
-                    <Languages languageList={data?.languageList}/>
+                    <Languages/>
+                    <Education/>
+                    <WorkHistory employmentList={data?.freelancer.products}/>
                 </div>
             </div>
 
@@ -30,6 +34,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx
  if(accountType=='f'){
     const request = await axios.get(`${process.env.API_URL}/freelancer/${userId}`)
     const data = request.data
+
+    store.dispatch(setLanguage(data.languageList))
+    store.dispatch(setEducation(data.educationList))
+
     return {
       props:{
         data

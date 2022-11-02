@@ -10,7 +10,7 @@ export default function HourBerWeek({weeklyWantingHour}) {
   return (
     <div className='py-4'>
         <div className='flex items-center space-x-2'>
-            <h1><b>Hours per week</b></h1>
+            <h1 className='text-xl '><b>Hours per week</b></h1>
             {weeklyWantingHour?.length > 0 ?
             <ModifyButton onClick={toggleModel}/>
             :

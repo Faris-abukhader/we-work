@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import {Location} from '../../general/general'
-export default function Header({firstName,lastName,avatar,currentLocation}) {
+export default function Header({firstName,lastName,avatar,currentLocation,freelancer}) {
   return (
     <div className='flex items-center justify-between'>
         <div className='flex items-center space-x-3'>
@@ -9,6 +9,7 @@ export default function Header({firstName,lastName,avatar,currentLocation}) {
             <div>
                 <h1 className='font-bold text-lg sm:text-2xl '>{firstName+' '+lastName}</h1>
                 <Location location={currentLocation}/>
+                <p className='text-xs text-gray-500 pt-1'>{freelancer.shortIntro}</p>
             </div>
 
         </div>
