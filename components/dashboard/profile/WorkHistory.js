@@ -19,6 +19,7 @@ export default function WorkHistory({employmentList=[]}) {
           <h1 className='hover:text-blue-700 hover:cursor-pointer'>{work.hiringRequest?.job?.title}</h1>
           </Link>
           <h1 className='text-sm text-gray-600'>for {work.hiringRequest?.owner?.user?.firstName+' '+work.hiringRequest?.owner?.user?.lastName}</h1>
+          <h1 className='text-xs text-gray-600'>employer rate : {work.hiringRequest?.product?.employerRate??'no rate'} </h1>
           </div>)
         }
     </div>
