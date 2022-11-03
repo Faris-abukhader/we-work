@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import {deleteOneEducation as deleteEducation} from '../../../store/slices/education'
 import { useSelector } from 'react-redux'
-export default function Education() {
+export default function Education({isReview=false}) {
 const educationList = useSelector((state)=>state.education)
 
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const educationList = useSelector((state)=>state.education)
     <div className='py-4'>
         <div className='flex items-center space-x-2'>
             <h1 className='text-xl '><b>Education</b></h1>
-            <AddButton onClick={toggleAddModel}/>
+            {!isReview && <AddButton onClick={toggleAddModel}/>}
             
         </div>
         {educationList.length > 0 && educationList.map((education,index)=><div key={index} className='flex pb-3'>
@@ -40,11 +40,11 @@ const educationList = useSelector((state)=>state.education)
                 <h1 className='text-md text-gray-600'>{education.areaOfStudy}</h1>
                 <h1 className='text-sm text-gray-600'>{education.degree}</h1>
                 </div>
-                <DeleteButton onClick={()=>deleteOneEducation(education.id)} />
+                {!isReview && <DeleteButton onClick={()=>deleteOneEducation(education.id)} />}
             </div>
           </div>)
         }
-        <AddEducationModel show={showAddModel} toggle={toggleAddModel}/>
+        {!isReview &&<AddEducationModel show={showAddModel} toggle={toggleAddModel}/>}
     </div>
   )
 }

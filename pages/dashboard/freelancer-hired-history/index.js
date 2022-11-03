@@ -34,7 +34,7 @@ export default function Index() {
   }
 
   return (
-    <Layout current={`Hired history`} accountType='e'>
+    <Layout current={`Hired history`} accountType='f'>
         <div className='w-full h-80 py-10 flex justify-center'>
         <div className='w-full px-2 md:px-20 space-y-4'>
         {requestList.length > 0 ?

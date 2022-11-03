@@ -14,6 +14,7 @@ import UpdateCertificationModel from "./UpdateCertificationModel";
 import EmploymentHistory from "./EmploymentHistory";
 import AddEmploymentModel from "./AddEmploymentModel";
 import UpdateEmploymentModel from "./UpdateEmploymentModel";
+import PickerAvatarModel from "./PickAvatarModel";
 export {
     Header,
     HourBerWeek,
@@ -30,5 +31,6 @@ export {
     UpdateCertificationModel,
     EmploymentHistory,
     AddEmploymentModel,
-    UpdateEmploymentModel
+    UpdateEmploymentModel,
+    PickerAvatarModel
 }

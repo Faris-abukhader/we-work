@@ -24,12 +24,14 @@ export default function Navbar({ burgerHandler,customColor='',hasAnimation=true 
   }, [])
 
   return (
-    <div style={{backdropFilter: 'blur(10px)',/*backgroundColor:customColor.length>0 && customColor*/}} className={`w-full bg-white ${position==1 ? 'static':'sticky'} top-0 p-3 py-5 ${backgroundColor} z-30`}>
+    <div style={{backdropFilter: 'blur(10px)',/*backgroundColor:customColor.length>0 && customColor*/}} className={`w-full bg-white ${position==1 ? 'static':'sticky'} top-0 p-3 py-5 ${backgroundColor} z-30 ${customColor}`}>
         <div className={`blur-0 flex justify-between items-center text-gray-800`}>
-        <div name='pageName' className={`flex items-center text-3xl font-bold ${hasAnimation && 'animate__animated'} animate__fadeInLeft animate__slow`}>
+        <Link href={`/`}>
+        <div name='pageName' className={`flex hover:cursor-pointer items-center text-3xl font-bold ${hasAnimation && 'animate__animated'} animate__fadeInLeft animate__slow`}>
           <Image src={`/icons/logo.svg`} width={30} height={30} alt='logo'/>
           <div>e work</div>
         </div>
+        </Link>
         <div className='hidden md:block'>
             <ul className={`flex space-x-6 ${hasAnimation && 'animate__animated'}`}>
                 <li className={`hover:text-blue-500 hover:cursor-pointer hover:scale-110 ${hasAnimation && 'animate__animated'} animate__fadeInLeft  animate__slower`}>Home</li>

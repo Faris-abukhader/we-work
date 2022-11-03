@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import {deleteOneLanguage as deleteLanguage} from '../../../store/slices/language'
 import { useSelector } from 'react-redux'
-export default function Languages() {
+export default function Languages({isReview=false}) {
   const languageList = useSelector((state)=>state.language)
   const dispatch = useDispatch()
   const [showAddModel,setShowAddModel] = useState(false)
@@ -29,15 +29,15 @@ export default function Languages() {
     <div className='py-4'>
         <div className='flex items-center space-x-2'>
             <h1 className='text-xl '><b>Languages</b></h1>
-            <AddButton onClick={toggleAddModel}/>
+            {!isReview &&<AddButton onClick={toggleAddModel}/>}
             
         </div>
-        {languageList.length > 0 && languageList.map((language,index)=><div key={index} className='flex space-x-2 items-center'>
+        {languageList.length > 0 && languageList.map((language,index)=><div key={index} className='flex space-x-2 py-2 items-center'>
           <h1>{language.name} : {language.level}</h1>
-          <DeleteButton onClick={()=>deleteOnLanguage(language.id)} />
+          {!isReview &&<DeleteButton onClick={()=>deleteOnLanguage(language.id)} />}
           </div>)
         }
-        <AddLanguageModel show={showAddModel} toggle={toggleAddModel}/>
+        {!isReview &&<AddLanguageModel show={showAddModel} toggle={toggleAddModel}/>}
     </div>
   )
 }

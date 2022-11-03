@@ -3,7 +3,7 @@ import SubNav from '../dashboard/SubNav'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import Offcanvas from './components/Offcanva'
-export default function UserLayout({children,navBackgroundColor='',navHasAnimation=true,accountType='',current=''}) {
+export default function UserLayout({children,navBackgroundColor='',navHasAnimation=false,accountType='',current=''}) {
 const [showOffcanvas,setShowOffcanvas] = useState(false)
 
 const toggleOffcanvas = ()=>{

@@ -18,6 +18,7 @@ import DeclineButton from './DeclineButton'
 import ModifyButton from './ModifyButton'
 import AddButton from './AddButton'
 import DeleteButton from './DeleteButton'
+import AvatarPicker from './AvatarPicker'
 export{
     AddNewButton,
     Checkbox,
@@ -38,6 +39,7 @@ export{
     DeclineButton,
     ModifyButton,
     AddButton,
-    DeleteButton
+    DeleteButton,
+    AvatarPicker
 
 }

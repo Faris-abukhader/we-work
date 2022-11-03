@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-export default function WorkHistory({employmentList=[]}) {
+export default function WorkHistory({employmentList=[],isReview=false}) {
     console.log('!!!!!!!')
     console.log(employmentList)
   const languageList = useSelector((state)=>state.language)
@@ -14,7 +14,7 @@ export default function WorkHistory({employmentList=[]}) {
   return (
     <div className='py-4'>
             <h1 className='text-xl '><b>Work history</b></h1>            
-        {employmentList.length > 0 && employmentList.map((work,index)=><div key={index} className=''>
+        {employmentList.length > 0 && employmentList.map((work,index)=><div key={index} className='py-4'>
           <Link href={`/jobDetails?id=${work.hiringRequest?.job?.id}`}>
           <h1 className='hover:text-blue-700 hover:cursor-pointer'>{work.hiringRequest?.job?.title}</h1>
           </Link>

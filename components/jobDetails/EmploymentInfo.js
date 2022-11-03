@@ -13,7 +13,7 @@ export default function EmploymentInfo({ location, category, salary }) {
                     </div>
                     <div className='w-full space-y-10'>
                         <InfoAttribute icon={`jobLevel.svg`} attribute={`Job level`} value={`Experienced (Non - Manager)`} />
-                        <InfoAttribute icon={`experience.svg`} attribute={`Experience`} value={`1 - 2years)`} />
+                        <InfoAttribute icon={`experience.svg`} attribute={`Experience`} value={`1 - 2 years`} />
                         <InfoAttribute icon={`deadline.svg`} attribute={`Deadline`} value={`2022/12/21`} />
                         <InfoAttribute icon={`location.svg`} attribute={`Location`} value={location} />
                     </div>

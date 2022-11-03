@@ -15,7 +15,7 @@ export default function Home() {
   }
   return (
      <div className='w-full bg-transparent'>
-      <Navbar burgerHandler={toggleOffcanvas}/>
+      <Navbar burgerHandler={toggleOffcanvas} customColor='bg-gray-400 bg-opacity-60'/>
       <Offcanvas show={showOffcanvas}/>
       <TopPage/>
       <Technology/>
