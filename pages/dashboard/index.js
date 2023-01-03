@@ -28,10 +28,10 @@ export default function Index({statics}) {
 
 export const getServerSideProps = async (ctx) => {
     const session = await getSession(ctx)
-    const accountType = session.user?.accountType
-    const userId = session.user?.id
 
     if (session) {
+        const accountType = session?.user?.accountType
+        const userId = session?.user?.id    
         console.log('*************')
         console.log(session.user)
 

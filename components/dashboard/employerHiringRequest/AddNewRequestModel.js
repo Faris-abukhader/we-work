@@ -12,8 +12,8 @@ export default function AddNewRequestModel( {show, toggle,freelancerList,jobList
     const userId = session.data?.user?.id
     const token = session.data?.user?.token
     const [disable,setDisable] = useState(true)
-    const [isValid, setValid] = useState({ freelancerId:false,jobId:false,ownerNote:false })
-    const [request,setRequest] = useState({ownerId:userId,freelancerId:'',freelancerName:'',jobId:'',jobName:'',ownerNote:''})
+    const [isValid, setValid] = useState({ freelancerId:false,jobId:false,salary:false,ownerNote:false })
+    const [request,setRequest] = useState({ownerId:userId,freelancerId:'',freelancerName:'',salary:0,jobId:'',jobName:'',ownerNote:''})
 
 
     useEffect(()=>{
@@ -100,6 +100,7 @@ export default function AddNewRequestModel( {show, toggle,freelancerList,jobList
             <DropDown mainLabel='Target job' isValid={isValid.jobId} hasLabel={true} label={'Nextjs developer'} hasData={true} handler={setJob} data={jobList.map((job)=>{return {id:job.id,title:job.title}})} selectedId={request.jobId} selectedItem={request.jobName}/>
             </div>
             <InputWithLabel label={`Description`} isTextArea={true} isValid={isValid.ownerNote} name={`ownerNote`} value={request.ownerNote} inputHandler={inputHandler} />
+            <InputWithLabel label={`salary`} isValid={isValid.salary} name={`salary`} value={request.salary} inputHandler={inputHandler} />
         </section>
       </CustomModal.Body>
       <CustomModal.Footer>

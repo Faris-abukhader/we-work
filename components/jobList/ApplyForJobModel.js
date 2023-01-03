@@ -4,7 +4,7 @@ import { InputWithLabel, CloseButton, ConfirmButton, CustomDropDown } from '../g
 import { timingOptions } from '../../utils/utils'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import { fireNotification } from '../../utils/fireNotification'
+import { fireNotification } from '../../utils/utils'
 export default function ApplyForJobModel({ show, toggle, jobId }) {
   const session = useSession()
   const userId = session.data?.user?.id

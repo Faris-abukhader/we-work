@@ -4,7 +4,7 @@ import {InputWithLabel,CloseButton,ConfirmButton,SegimentPicker,CustomDropDown} 
 import {citiesList,jobCategories} from '../../../utils/utils'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import {fireNotification} from '../../../utils/fireNotification'
+import {fireNotification} from '../../../utils/utils'
 import { useDispatch } from 'react-redux'
 import { addNewJob } from '../../../store/slices/job'
 export default function AddNewJobModel( {show, toggle}) {

@@ -62,8 +62,8 @@ export default function SignIn() {
                 <h3 className="font-bold text-gray-50 text-xl md:text-3xl py-6">Start for free Today</h3>
                 <h4 className="font-bold text-blue-200 text-lg md:text-xl py-6">Access to all features. No credit card required.</h4>
                 <div className="px-2 sm:px-5 text-start pt-8">
-                <InputWithLabel value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
-                <InputWithLabel value={credentials.password} name='password' type="password" isValid={isValid.email} label='Email' inputHandler={inputHandler} />
+                <InputWithLabel textColor="text-gray-100" value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
+                <InputWithLabel textColor="text-gray-100" value={credentials.password} name='password' type="password" isValid={isValid.email} label='Email' inputHandler={inputHandler} />
                     <button disabled={disabled} onClick={signInFunc} className='w-full h-[40px] mt-6 text-gray-50 flex justify-center items-center bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Sign In</button>
                     <button onClick={reset} className='w-full h-[40px] mt-4 flex justify-center items-center text-gray-50  bg-blue-800 rounded-md hover:bg-blue-900 disabled:bg-blue-400  cursor-pointer text-center'>Reset</button>
                 </div>

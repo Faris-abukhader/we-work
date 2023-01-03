@@ -62,7 +62,7 @@ export default function AddCertificationModel( {show,toggle}) {
       toggle()
     }
   return (//schoolName:'',dateAttend:'',dateGraduate:'',areaOfStudy:'',degree:'',description:''
-    <CustomModal show={show} toggle={toggle} title={`Add new language`} >
+    <CustomModal show={show} toggle={toggle} title={`Add new certification`} >
       <CustomModal.Body>
         <section className="py-1">
         <InputWithLabel label={`From where`} isValid={isValid.fromWhere} name={`fromWhere`} value={certification.fromWhere} inputHandler={inputHandler} />

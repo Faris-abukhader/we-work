@@ -44,12 +44,12 @@ export default function SignUp() {
         console.log(credentials)
         let request;
         try {
-            request = await axios.post(`${process.env.API_URL}/auth/signUp`, { ...credentials }, { headers: { token: 'arfhaeirfhe' } })
+            request = await axios.post(`${process.env.API_URL}/auth/signUp`, { ...credentials }, { headers: { token:process.env.WEBSITE_TOKEN } })
         } catch (err) {
-            fireNotification(`This email address already register in our platform try to sigin instead.`, 'error')
+            fireNotification({label:`This email address already register in our platform try to sigin instead.`, icon:'error'})
             return
         }
-        fireNotification(`We already sent email verification to ${credentials.email} , please check your email`)
+        fireNotification({label:`We already sent email verification to ${credentials.email} , please check your email`,icon:'warning'})
         router.push('/auth/signIn')
 
     }
@@ -75,10 +75,10 @@ export default function SignUp() {
                 <h3 className="font-bold text-gray-50 text-xl md:text-3xl py-6">Start for free Today</h3>
                 <h4 className="font-bold text-blue-200 text-lg md:text-xl py-6">Access to all features. No credit card required.</h4>
                 <div className="px-2 sm:px-5 text-start pt-8">
-                    <InputWithLabel value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
-                    <InputWithLabel value={credentials.password} type={`password`} name='password' isValid={isValid.password} label='Password' inputHandler={inputHandler} />
-                    <InputWithLabel value={credentials.firstName} name='firstName' isValid={isValid.firstName} label='First name' inputHandler={inputHandler} />
-                    <InputWithLabel value={credentials.lastName} name='lastName' isValid={isValid.lastName} label='Last name' inputHandler={inputHandler} />
+                    <InputWithLabel textColor="text-gray-100" value={credentials.email} name='email' isValid={isValid.email} label='Email' inputHandler={inputHandler} />
+                    <InputWithLabel textColor="text-gray-100" value={credentials.password} type={`password`} name='password' isValid={isValid.password} label='Password' inputHandler={inputHandler} />
+                    <InputWithLabel textColor="text-gray-100" value={credentials.firstName} name='firstName' isValid={isValid.firstName} label='First name' inputHandler={inputHandler} />
+                    <InputWithLabel textColor="text-gray-100" value={credentials.lastName} name='lastName' isValid={isValid.lastName} label='Last name' inputHandler={inputHandler} />
                     <div className="flex items-center space-x-3">
                         <AccountTypeCard label={'Freelancer'} icon={`freelancer.svg`} clickHandler={setAccountType} accountType={credentials.accountType} />
                         <AccountTypeCard label={'Employer'} icon={`employer.svg`} clickHandler={setAccountType} accountType={credentials.accountType} />

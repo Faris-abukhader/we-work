@@ -6,7 +6,7 @@ export default function WorkCard({ id,jobId, job,owner,salary,isEmployerAccepet,
     <div className='flex justify-between items-center'>
       <div>
         <Link href={`/jobDetails?id=${jobId}`}>
-      <h1 className='font-bold text-md sm:text-lg hover:text-blue-800'>Job : {job.title}</h1>
+      <h1 className='font-bold text-md sm:text-lg hover:text-blue-800'>Job : {job?.title}</h1>
       </Link>
           <h1 className='font-bold text-sm text-gray-600'>from : {owner?.user?.firstName+' '+owner?.user?.lastName}</h1>
         <h4 className="text-xs text-gray-500 font-bold">salary : <span className="text-blue-700 text-sm font-bold">{salary} $</span></h4>
